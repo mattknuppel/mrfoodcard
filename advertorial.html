@@ -8,74 +8,255 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    :root{--bg:#f7f5f1;--text:#1b1b1b;--accent:#f97316;--muted:#4b5563}
-    html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text)}
-    .container{max-width:760px;margin:0 auto;padding:3.5rem 1.5rem 5rem;line-height:1.6}
-    h1{font-size:clamp(1.6rem,3.5vw,2.6rem);margin:0 0 1rem;line-height:1.05}
-    h2{font-size:clamp(1.15rem,2.5vw,1.6rem);margin:1.8rem 0 .8rem}
-    p{margin:0 0 1rem;font-size:1.05rem}
-    .intro{background:#fff;padding:1.25rem 1.5rem;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,0.06)}
-    ul, ol{margin:0 0 1rem 1.25rem;padding-left:1rem}
-    .features{margin-top:1rem}
-    .cta{margin-top:2rem;padding:1.75rem;background:var(--text);color:#fff;border-radius:12px;text-align:center}
-    .btn{display:inline-block;padding:.9rem 1.4rem;background:linear-gradient(135deg,#fb923c,#f97316);color:#111;border-radius:999px;font-weight:700;text-decoration:none}
-    .small{display:block;margin-top:.75rem;font-size:.9rem;color:rgba(255,255,255,0.85)}
-    .disclaimer{margin-top:1rem;font-size:0.95rem;color:var(--muted)}
-    @media (max-width:640px){.container{padding:2.25rem 1rem 3rem}}
+    :root {
+      --bg: #f7fafc;
+      --text: #213547;
+      --accent: #2f855a;
+      --accent-soft: #38b27a;
+      --muted: #64748b;
+      --card: #ffffff;
+      --card-shadow: rgba(15, 23, 42, 0.06);
+    }
+
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 3.5rem 1.5rem 5rem;
+      line-height: 1.6;
+    }
+
+    h1 {
+      font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+      margin: 0 0 1rem;
+      line-height: 1.05;
+    }
+
+    h2 {
+      font-size: clamp(1.15rem, 2.5vw, 1.6rem);
+      margin: 1.8rem 0 0.8rem;
+    }
+
+    p {
+      margin: 0 0 1rem;
+      font-size: 1.05rem;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      font-weight: 700;
+      margin: 0 0 0.5rem;
+    }
+
+    .hero {
+      margin-bottom: 2rem;
+      padding: 0;
+    }
+
+    .hero-content {
+      max-width: 520px;
+    }
+
+    .hero h1 {
+      margin-bottom: 1.25rem;
+    }
+
+    .hero p {
+      color: #475569;
+      font-size: 1.05rem;
+    }
+
+    .hero-visual {
+      /* Keep the collage bright without relying on a dark overlay */
+      margin: 0 auto 3rem;
+      position: relative;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
+      min-height: 320px;
+      aspect-ratio: 4 / 3;
+    }
+
+    .hero-visual img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .intro {
+      background: var(--card);
+      padding: 1.25rem 1.5rem;
+      border-radius: 16px;
+      box-shadow: 0 12px 30px var(--card-shadow);
+    }
+
+    ul,
+    ol {
+      margin: 0 0 1rem 1.25rem;
+      padding-left: 1rem;
+    }
+
+    .features {
+      margin-top: 1rem;
+    }
+
+    .cta {
+      margin-top: 2.5rem;
+      padding: 1.75rem;
+      background: #f0fdf4;
+      border: 1px solid rgba(47, 133, 90, 0.25);
+      border-radius: 16px;
+      text-align: center;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);
+    }
+
+    .cta h2 {
+      color: #14532d;
+      margin-top: 0;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.9rem 1.4rem;
+      background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+      color: #fff;
+      border-radius: 999px;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 8px 18px rgba(47, 133, 90, 0.25);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 26px rgba(47, 133, 90, 0.25);
+    }
+
+    .small {
+      display: block;
+      margin-top: 0.75rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .disclaimer {
+      margin-top: 1rem;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        padding: 2.25rem 1rem 3rem;
+      }
+
+      .hero-visual {
+        min-height: 240px;
+      }
+    }
   </style>
 </head>
 <body>
   <script>
     // Defensive script (best-effort): unregister service workers, snapshot the main container,
     // and restore the content if the body becomes empty or nearly empty.
-    (function(){
-      try{
-        if('serviceWorker' in navigator){
-          navigator.serviceWorker.getRegistrations().then(function(regs){
-            regs.forEach(function(r){ try{ r.unregister(); } catch(e){} });
-          }).catch(function(){});
+    (function () {
+      try {
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker
+            .getRegistrations()
+            .then(function (regs) {
+              regs.forEach(function (r) {
+                try {
+                  r.unregister();
+                } catch (e) {
+                  /* ignore */
+                }
+              });
+            })
+            .catch(function () {});
         }
 
         var snapshot = null;
-        function takeSnapshot(){
+        function takeSnapshot() {
           try {
             var el = document.querySelector('.container');
             if (el) snapshot = el.outerHTML;
-          } catch (e) { snapshot = null; }
+          } catch (e) {
+            snapshot = null;
+          }
         }
 
         if (document.readyState === 'complete' || document.readyState === 'interactive') takeSnapshot();
         else document.addEventListener('DOMContentLoaded', takeSnapshot, { once: true });
 
-        function tryRestore(){
+        function tryRestore() {
           try {
             if (!snapshot || !document.body) return;
             var bodyTrim = document.body.innerHTML.trim();
             if (bodyTrim === '' || /^<script[\s\S]*<\/script>$/.test(bodyTrim) || bodyTrim.length < 40) {
               document.body.innerHTML = snapshot;
             }
-          } catch (e) { /* ignore */ }
+          } catch (e) {
+            /* ignore */
+          }
         }
 
         setTimeout(tryRestore, 500);
 
         var obs = new MutationObserver(tryRestore);
-        function startObserving(){
+        function startObserving() {
           if (document.body) obs.observe(document.body, { childList: true, subtree: true });
         }
         if (document.body) startObserving();
         else document.addEventListener('DOMContentLoaded', startObserving, { once: true });
-
-      } catch (e) { /* defensive fallback */ }
+      } catch (e) {
+        /* defensive fallback */
+      }
     })();
   </script>
 
   <main class="container">
-    <article class="intro" aria-labelledby="lead-heading">
-      <p style="text-transform:uppercase;letter-spacing:.12em;color:var(--accent);font-weight:700;margin:0 0 .5rem">Get Help Paying for Groceries — Fast, Easy, and 100% Legitimate</p>
-      <h1 id="lead-heading">Seniors: You Could Get Grocery Assistance That Pays for Your Food — Check If You Qualify Now</h1>
-      <p>If you’re 60 or older, you may be missing out on government and community programs that can help pay for your groceries every month — even if you’re not “low income.”</p>
-      <p>These programs are already funded and waiting for qualified seniors to claim their benefits. You can use this assistance to buy fresh produce, meats, dairy, and everyday essentials — saving you hundreds of dollars each month.</p>
+    <section class="hero" aria-labelledby="lead-heading">
+      <div class="hero-content">
+        <p class="eyebrow">Get Help Paying for Groceries — Fast, Easy, and 100% Legitimate</p>
+        <h1 id="lead-heading">Seniors: You Could Get Grocery Assistance That Pays for Your Food — Check If You Qualify Now</h1>
+        <p>
+          Discover programs that provide monthly grocery funds, free meal deliveries, and farmers’ market coupons so you can keep
+          your pantry full without the stress.
+        </p>
+      </div>
+    </section>
+
+    <figure class="hero-visual">
+      <img
+        src="assets/hero-grocery-support.svg"
+        alt="Illustration showing grocery assistance options available to seniors"
+        loading="lazy"
+      />
+    </figure>
+
+    <article class="intro" aria-labelledby="overview-heading">
+      <h2 id="overview-heading">Stretch Your Grocery Budget with Trusted Support</h2>
+      <p>
+        If you’re 60 or older, you may be missing out on government and community programs that can help pay for your groceries
+        every month — even if you’re not “low income.”
+      </p>
+      <p>
+        These programs are already funded and waiting for qualified seniors to claim their benefits. You can use this assistance
+        to buy fresh produce, meats, dairy, and everyday essentials — saving you hundreds of dollars each month.
+      </p>
       <p>Don’t struggle to stretch your grocery budget when help is available right now.</p>
     </article>
 
@@ -84,40 +265,65 @@
       <ol>
         <li>
           <strong>SNAP (Food Assistance for Seniors)</strong>
-          <p>The largest nutrition program in America. If you qualify, you’ll receive monthly funds on a benefits card that works just like a debit card — for groceries at your local store or supermarket. Tens of thousands of seniors use SNAP every day to cut their grocery bills in half.</p>
+          <p>
+            The largest nutrition program in America. If you qualify, you’ll receive monthly funds on a benefits card that works
+            just like a debit card — for groceries at your local store or supermarket. Tens of thousands of seniors use SNAP every
+            day to cut their grocery bills in half.
+          </p>
         </li>
         <li>
           <strong>Meals on Wheels</strong>
-          <p>Hot, ready-to-eat meals delivered right to your door. If you have limited mobility or trouble getting to the store, Meals on Wheels can provide daily meals at no cost — and even a friendly visit from a volunteer.</p>
+          <p>
+            Hot, ready-to-eat meals delivered right to your door. If you have limited mobility or trouble getting to the store,
+            Meals on Wheels can provide daily meals at no cost — and even a friendly visit from a volunteer.
+          </p>
         </li>
         <li>
           <strong>The Emergency Food Assistance Program (TEFAP)</strong>
-          <p>Get free groceries and pantry staples from trusted local food banks — including canned goods, pasta, and proteins. No complicated forms, no waiting — just real food support when you need it.</p>
+          <p>
+            Get free groceries and pantry staples from trusted local food banks — including canned goods, pasta, and proteins. No
+            complicated forms, no waiting — just real food support when you need it.
+          </p>
         </li>
         <li>
           <strong>Senior Farmers’ Market Nutrition Program (SFMNP)</strong>
-          <p>Receive free coupons to buy fruits, vegetables, and herbs from your local farmers’ market. Enjoy fresh, local produce — paid for by the program.</p>
+          <p>
+            Receive free coupons to buy fruits, vegetables, and herbs from your local farmers’ market. Enjoy fresh, local produce —
+            paid for by the program.
+          </p>
         </li>
         <li>
           <strong>Commodity Supplemental Food Program (CSFP)</strong>
-          <p>Every month, receive a box of nutritious groceries — cereals, canned fruits, vegetables, and proteins. Perfect for seniors who want reliable, consistent food assistance.</p>
+          <p>
+            Every month, receive a box of nutritious groceries — cereals, canned fruits, vegetables, and proteins. Perfect for seniors
+            who want reliable, consistent food assistance.
+          </p>
         </li>
       </ol>
     </section>
 
     <section class="cta" aria-labelledby="cta-heading">
       <h2 id="cta-heading">Stop Paying Full Price for Groceries — Get the Help You Deserve</h2>
-      <p>These programs are designed to make sure seniors never go hungry. You’ve worked hard, you’ve earned this, and now it’s your turn to benefit.</p>
-      <p class="disclaimer">Get monthly grocery funds or free meals • Fast and easy online application • No credit check, no hidden fees • Start receiving benefits as soon as this month</p>
+      <p>
+        These programs are designed to make sure seniors never go hungry. You’ve worked hard, you’ve earned this, and now it’s your
+        turn to benefit.
+      </p>
+      <p class="disclaimer">
+        Get monthly grocery funds or free meals • Fast and easy online application • No credit check, no hidden fees • Start
+        receiving benefits as soon as this month
+      </p>
       <a class="btn" href="quiz.html" role="button">Check My Eligibility for Grocery Assistance Now</a>
       <span class="small">Don’t wait — every week you delay could mean missing out on grocery money that’s already yours.</span>
     </section>
   </main>
 
   <noscript>
-    <div style="max-width:760px;margin:2rem auto;padding:1rem;font-family:Inter,system-ui,sans-serif;">
+    <div style="max-width: 760px; margin: 2rem auto; padding: 1rem; font-family: Inter, system-ui, sans-serif;">
       <strong>JavaScript is recommended for the best experience.</strong>
-      <p>If this page appears blank or incomplete, try disabling browser extensions (ad blockers/privacy tools) or clear site data and reload.</p>
+      <p>
+        If this page appears blank or incomplete, try disabling browser extensions (ad blockers/privacy tools) or clear site data and
+        reload.
+      </p>
     </div>
   </noscript>
 </body>
