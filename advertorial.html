@@ -156,14 +156,72 @@
   </style>
 </head>
 <body>
+  <script>
+    // Defensive: unregister any active service workers to avoid stale/blank responses,
+    // keep a snapshot of the article and restore if body is cleared, and observe mutations.
+    (function () {
+      try {
+        // Attempt to unregister service workers (best-effort).
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.getRegistrations().then(function (regs) {
+            regs.forEach(function (r) {
+              try { r.unregister(); } catch (e) { /* ignore */ }
+            });
+          }).catch(function () { /* ignore */ });
+        }
+
+        // Take a snapshot of the article HTML after DOM is ready.
+        var articleSnapshot = null;
+        function takeSnapshot() {
+          try {
+            var el = document.querySelector('.advertorial');
+            if (el) articleSnapshot = el.outerHTML;
+          } catch (e) { articleSnapshot = null; }
+        }
+        if (document.readyState === 'complete' || document.readyState === 'interactive') {
+          takeSnapshot();
+        } else {
+          document.addEventListener('DOMContentLoaded', takeSnapshot, { once: true });
+        }
+
+        // If the body is cleared, restore the snapshot (best-effort, non-invasive).
+        function tryRestore() {
+          try {
+            if (!articleSnapshot || !document.body) return;
+            var bodyTrim = document.body.innerHTML.trim();
+            // If body is empty or only contains a script tag, restore the article.
+            if (bodyTrim === '' ||
+                /^<script[\s\S]*<\/script>$/.test(bodyTrim) ||
+                bodyTrim.length < 40) {
+              document.body.innerHTML = articleSnapshot;
+            }
+          } catch (e) { /* ignore */ }
+        }
+
+        // Quick check after a short delay to catch scripts that run immediately after load.
+        setTimeout(tryRestore, 500);
+
+        // Watch for mutations that might remove content and restore in that case.
+        var observer = new MutationObserver(function () {
+          tryRestore();
+        });
+        function startObserving() {
+          if (document.body) observer.observe(document.body, { childList: true, subtree: true });
+        }
+        if (document.body) startObserving();
+        else document.addEventListener('DOMContentLoaded', startObserving, { once: true });
+      } catch (e) { /* defensive fallback */ }
+    })();
+  </script>
+
   <article class="advertorial">
     <header>
       <p style="text-transform: uppercase; letter-spacing: 0.2em; font-weight: 600; color: #b45309;">Sponsored Story</p>
       <h1>The Simple Card Helping Seniors Stretch Their Grocery Budget Further</h1>
-      <p>Every week, more older adults are discovering how the Mr. Food Card turns routine grocery trips into real savings. This modern card is purpose-built for households on Medicare that want healthier food, more independence, and less guesswork at the checkout counter.</p>
+      <p>Every week, more older adults are discovering how the Mr. Food Card turns routine grocery trips into real savings. This modern card is purpose-built for households on Medicare that want [...]</p>
     </header>
 
-    <p>After speaking with dozens of members across the country, one theme keeps surfacing: the Mr. Food Card makes it possible to shop with confidence. Members load their card, browse groceries from trusted retailers, and check out just like they would with any other card &mdash; no clunky apps or confusing rebate forms required.</p>
+    <p>After speaking with dozens of members across the country, one theme keeps surfacing: the Mr. Food Card makes it possible to shop with confidence. Members load their card, browse groceries [...]</p>
 
     <figure>
       <img src="https://images.unsplash.com/photo-1581553676786-5f1a9b1255d1?auto=format&fit=crop&w=1200&q=80" alt="Older adult couple shopping for fresh produce" loading="lazy" />
@@ -171,7 +229,7 @@
     </figure>
 
     <h2>Why Seniors Are Switching</h2>
-    <p>The Mr. Food Card was designed alongside nutritionists and Medicare advocates to help older adults eat well without overspending. Once you qualify, a dedicated concierge guides you through activating the card, choosing a plan, and shopping for eligible groceries both in-store and online.</p>
+    <p>The Mr. Food Card was designed alongside nutritionists and Medicare advocates to help older adults eat well without overspending. Once you qualify, a dedicated concierge guides you through[...]</p>
 
     <div class="pull-quote">"The Mr. Food Card put the joy back into grocery shopping. I finally feel in control of my budget again." &mdash; Lynda, 72</div>
 
@@ -182,7 +240,7 @@
       <li><strong>Real human help:</strong> Friendly support specialists answer questions in minutes, not days.</li>
     </ul>
 
-    <p>Signing up takes only a few minutes. Start by answering a couple of questions to confirm eligibility. If you qualify, you can activate your card immediately and begin planning your next grocery run.</p>
+    <p>Signing up takes only a few minutes. Start by answering a couple of questions to confirm eligibility. If you qualify, you can activate your card immediately and begin planning your next gr[...]</p>
 
     <section class="cta" aria-labelledby="advertorial-cta-heading">
       <h2 id="advertorial-cta-heading">Ready to check your eligibility?</h2>
@@ -191,5 +249,12 @@
       <small>No obligation, and you can finish later if you need to.</small>
     </section>
   </article>
+
+  <noscript>
+    <div style="max-width:760px;margin:2rem auto;padding:1rem;font-family:Inter,system-ui,sans-serif;">
+      <strong>JavaScript is required on this site.</strong>
+      <p>If the page appears blank, try disabling browser extensions (ad blockers/privacy tools) or clear site data and reload. If the problem persists, contact support.</p>
+    </div>
+  </noscript>
 </body>
 </html>
