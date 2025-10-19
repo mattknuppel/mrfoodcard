@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Smiling senior holding grocery card and loading groceries</title>
+  <desc id="desc">Stylized illustration of a senior woman in a grocery store holding a grocery card and standing by a car with grocery bags.</desc>
+  <defs>
+    <linearGradient id="leftGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fbead4" />
+      <stop offset="100%" stop-color="#f4d7ba" />
+    </linearGradient>
+    <linearGradient id="rightGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#e4f2ef" />
+      <stop offset="100%" stop-color="#cfe7e1" />
+    </linearGradient>
+  </defs>
+  <rect width="590" height="860" fill="url(#leftGradient)" rx="32" />
+  <rect x="610" width="590" height="860" fill="url(#rightGradient)" rx="32" />
+  <g fill="#e6c6a8" opacity="0.65">
+    <rect x="80" y="80" width="430" height="20" rx="10" />
+    <rect x="80" y="130" width="430" height="20" rx="10" />
+    <rect x="80" y="180" width="430" height="20" rx="10" />
+    <rect x="80" y="230" width="430" height="20" rx="10" />
+    <rect x="80" y="280" width="430" height="20" rx="10" />
+    <rect x="80" y="330" width="430" height="20" rx="10" />
+    <rect x="80" y="380" width="430" height="20" rx="10" />
+    <rect x="80" y="430" width="430" height="20" rx="10" />
+    <rect x="80" y="480" width="430" height="20" rx="10" />
+    <rect x="80" y="530" width="430" height="20" rx="10" />
+  </g>
+  <rect x="160" y="130" width="320" height="360" fill="#fff" stroke="#d0b18a" stroke-width="12" rx="28" />
+  <text x="180" y="210" font-family="'Inter', 'Arial', sans-serif" font-size="72" font-weight="700" fill="#2f855a">GROCERY</text>
+  <text x="180" y="290" font-family="'Inter', 'Arial', sans-serif" font-size="72" font-weight="700" fill="#2f855a">CARD</text>
+  <path d="M340 180h80v40h-80z" fill="#38b27a" />
+  <rect x="280" y="620" width="220" height="140" rx="40" fill="#fff5e9" stroke="#d8b892" stroke-width="10" />
+  <ellipse cx="275" cy="630" rx="140" ry="70" fill="#f6d9bf" />
+  <ellipse cx="870" cy="700" rx="240" ry="110" fill="#ccd8f3" />
+  <rect x="770" y="560" width="320" height="220" rx="40" fill="#dbe4fd" stroke="#7c8599" stroke-width="12" />
+  <rect x="720" y="620" width="160" height="160" rx="40" fill="#9aa6bf" stroke="#667086" stroke-width="12" />
+  <g fill="#f6c97f" stroke="#d59b4d" stroke-width="12" stroke-linejoin="round">
+    <path d="M960 620h80v160h-80z" />
+    <path d="M1040 640h80v140h-80z" />
+    <path d="M880 640h80v140h-80z" />
+  </g>
+  <g fill="none" stroke="#d59b4d" stroke-width="12" stroke-linecap="round">
+    <path d="M880 640c20-40 60-40 80 0" />
+    <path d="M960 620c20-40 60-40 80 0" />
+    <path d="M1040 640c20-40 60-40 80 0" />
+  </g>
+  <circle cx="780" cy="200" r="80" fill="#f1c7b8" stroke="#d3a393" stroke-width="12" />
+  <path d="M720 280h120l80 220H640z" fill="#86b39b" stroke="#4f8570" stroke-width="16" stroke-linejoin="round" />
+  <path d="M700 320h160l50 180H650z" fill="#7ea98f" opacity="0.6" />
+  <path d="M770 120c60-30 120 20 120 60" fill="none" stroke="#f1c7b8" stroke-width="16" stroke-linecap="round" opacity="0.6" />
+</svg>
