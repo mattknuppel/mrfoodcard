@@ -59,7 +59,10 @@
     }
 
     .hero {
-      margin-bottom: 2rem;
+      display: grid;
+      gap: 2.5rem;
+      align-items: center;
+      margin-bottom: 3rem;
       padding: 0;
     }
 
@@ -77,7 +80,7 @@
     }
 
     .hero-visual {
-      margin: 0 auto 3rem;
+      margin: 0;
       position: relative;
       border-radius: 22px;
       overflow: hidden;
@@ -162,9 +165,19 @@
       color: var(--muted);
     }
 
+    @media (min-width: 768px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+      }
+    }
+
     @media (max-width: 640px) {
       .container {
         padding: 2.25rem 1rem 3rem;
+      }
+
+      .hero {
+        gap: 2rem;
       }
 
       .hero-visual {
@@ -243,15 +256,14 @@
           your pantry full without the stress.
         </p>
       </div>
+      <figure class="hero-visual" aria-hidden="true">
+        <img
+          src="https://images.unsplash.com/photo-1514996937319-344454492b37?auto=format&fit=crop&w=1400&q=80"
+          alt="Fresh groceries like bread, fruit, and vegetables on a kitchen counter"
+          loading="lazy"
+        />
+      </figure>
     </section>
-
-    <figure class="hero-visual" aria-hidden="true">
-      <img
-        src="assets/hero-grocery-support.svg"
-        alt=""
-        loading="lazy"
-      />
-    </figure>
 
     <article class="intro" aria-labelledby="overview-heading">
       <h2 id="overview-heading">Stretch Your Grocery Budget with Trusted Support</h2>
