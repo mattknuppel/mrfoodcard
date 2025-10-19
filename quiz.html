@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mr. Food Card | Quick Eligibility Quiz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --border-color: #e5e7eb;
+      --primary: #111827;
+      --accent: #2563eb;
+      --accent-soft: rgba(37, 99, 235, 0.14);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #ffffff;
+      color: var(--primary);
+    }
+
+    main {
+      width: min(480px, calc(100vw - 2.5rem));
+      padding: 3.75rem 2.5rem 3rem;
+      border: 1px solid var(--border-color);
+      border-radius: 24px;
+      box-shadow: 0 28px 60px -30px rgba(15, 23, 42, 0.35);
+      text-align: center;
+    }
+
+    h1 {
+      font-size: clamp(1.9rem, 3vw, 2.4rem);
+      margin-bottom: 1rem;
+    }
+
+    p.description {
+      margin-top: 0;
+      margin-bottom: 2.25rem;
+      font-size: 1rem;
+      color: #4b5563;
+    }
+
+    .question {
+      display: none;
+      animation: fade 0.35s ease both;
+    }
+
+    .question.active {
+      display: block;
+    }
+
+    .question h2 {
+      font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+      margin-bottom: 1.5rem;
+    }
+
+    .answers {
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    button.answer {
+      padding: 0.85rem 1.25rem;
+      font-size: 1.05rem;
+      font-weight: 600;
+      border-radius: 999px;
+      border: 1px solid var(--border-color);
+      cursor: pointer;
+      background: #fff;
+      color: inherit;
+      transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    button.answer:hover,
+    button.answer:focus {
+      outline: none;
+      border-color: var(--accent);
+      background: var(--accent-soft);
+      transform: translateY(-1px);
+    }
+
+    .result {
+      display: none;
+      animation: fade 0.35s ease both;
+    }
+
+    .result.active {
+      display: block;
+    }
+
+    .result h2 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      margin-bottom: 1.25rem;
+    }
+
+    .result p {
+      font-size: 1.05rem;
+      color: #4b5563;
+      margin-bottom: 2rem;
+    }
+
+    .result .cta-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.9rem 1.75rem;
+      border-radius: 999px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .result .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 40px -22px rgba(15, 23, 42, 0.35);
+    }
+
+    .cta-qualified {
+      background: linear-gradient(135deg, #22c55e, #15803d);
+      color: #ffffff;
+    }
+
+    .cta-dq {
+      background: linear-gradient(135deg, #f97316, #c2410c);
+      color: #ffffff;
+    }
+
+    @keyframes fade {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 480px) {
+      main {
+        padding: 3.25rem 1.75rem 2.75rem;
+        border-radius: 18px;
+      }
+
+      button.answer {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Check your Mr. Food Card eligibility</h1>
+    <p class="description">Answer these two quick questions so we can direct you to the right next steps.</p>
+
+    <section id="question-1" class="question active" aria-live="polite">
+      <h2>Are you on Medicare?</h2>
+      <div class="answers">
+        <button type="button" class="answer" data-question="1" data-value="yes">Yes</button>
+        <button type="button" class="answer" data-question="1" data-value="no">No</button>
+      </div>
+    </section>
+
+    <section id="question-2" class="question" aria-live="polite">
+      <h2>What is your age range?</h2>
+      <div class="answers">
+        <button type="button" class="answer" data-question="2" data-value="65-75">65-75</button>
+        <button type="button" class="answer" data-question="2" data-value="76+">76+</button>
+      </div>
+    </section>
+
+    <section id="qualified-result" class="result" aria-live="polite">
+      <h2>You could qualify for extra grocery savings!</h2>
+      <p>Based on your answers, you&rsquo;re on track to activate a Mr. Food Card. Tap below to connect with a specialist and finish applying.</p>
+      <a class="cta-button cta-qualified" href="mailto:hello@mrfoodcard.com?subject=I%20Qualify%20for%20Mr.%20Food%20Card">Connect with a specialist</a>
+    </section>
+
+    <section id="dq-result" class="result" aria-live="polite">
+      <h2>Let&rsquo;s stay in touch</h2>
+      <p>It looks like you&rsquo;re not currently eligible for the Mr. Food Card. We&rsquo;ll send you helpful tips and updates as programs expand.</p>
+      <a class="cta-button cta-dq" href="mailto:hello@mrfoodcard.com?subject=Keep%20Me%20Posted%20About%20Mr.%20Food%20Card">Join the email list</a>
+    </section>
+  </main>
+
+  <script>
+    const answers = document.querySelectorAll("button.answer");
+    const question1 = document.getElementById("question-1");
+    const question2 = document.getElementById("question-2");
+    const qualifiedResult = document.getElementById("qualified-result");
+    const dqResult = document.getElementById("dq-result");
+
+    let onMedicare = null;
+
+    answers.forEach((button) => {
+      button.addEventListener("click", () => {
+        const question = button.dataset.question;
+        const value = button.dataset.value;
+
+        if (question === "1") {
+          onMedicare = value === "yes";
+
+          question1.classList.remove("active");
+
+          if (!onMedicare) {
+            dqResult.classList.add("active");
+            qualifiedResult.classList.remove("active");
+            question2.classList.remove("active");
+            return;
+          }
+
+          question2.classList.add("active");
+        }
+
+        if (question === "2") {
+          if (onMedicare) {
+            question2.classList.remove("active");
+            qualifiedResult.classList.add("active");
+            dqResult.classList.remove("active");
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
